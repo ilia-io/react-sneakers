@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './Card.module.scss'
 import ContentLoader from "react-content-loader"
 import MyLoader from '../../Loader';
+import { AppContext } from '../../App';
 
 function Card({
   id,
@@ -12,30 +13,41 @@ function Card({
   onPlus,
   favourites = false,
   addedToCart = false,
-  loading = false
+  loading = false,
+  parentId
 }) {
 
-  const [togglePlusIcon, setTogglePlusIcon] = useState(addedToCart)
+  const { isItemAddedToCart, cartItems } = useContext(AppContext)
 
+  //const [togglePlusIcon, setTogglePlusIcon] = useState(addedToCart)
   const [toggleHeartIcon, setToggleHeartIcon] = useState(favourites)
 
+  const obj = { id: cartItems.length, title, imageURL, price, parentId: id }
+
+
   const onClickPlus = () => {
-    onPlus({ id, title, imageURL, price })
-    setTogglePlusIcon(!togglePlusIcon)
+    onPlus(obj)
+    //setTogglePlusIcon(!togglePlusIcon)
   }
 
   const onClickFavourite = () => {
-    onFavourite({ id, title, imageURL, price })
+    onFavourite(obj)
     setToggleHeartIcon(!toggleHeartIcon)
   }
 
   return (
+
     <div className={styles.card}>
       {loading ? <MyLoader />
         : <>
-          <div onClick={onClickFavourite} className={styles.favourite}>
-            <img width={22} src={toggleHeartIcon ? "figma/heart-liked.svg" : "figma/heart-unliked.svg"} alt="heart unliked" />
-          </div>
+          {onFavourite && <div
+            onClick={onClickFavourite}
+            className={styles.favourite}>
+            <img
+              width={22}
+              src={toggleHeartIcon ? "figma/heart-liked.svg" : "figma/heart-unliked.svg"} alt="heart unliked" />
+          </div>}
+
           <img width={133} height={112} src={imageURL} alt="sneakers" />
           <h5>{title}</h5>
           <div className='d-flex justify-between align-center'>
@@ -43,10 +55,11 @@ function Card({
               <span>Цена:</span>
               <b>{price} руб.</b>
             </div>
-            <img
+            {onPlus && <img
               className={styles.plus}
               onClick={onClickPlus}
-              src={togglePlusIcon ? "figma/btn-cheked.svg" : "figma/btn-plus.svg"} alt="plus icon" />
+              src={isItemAddedToCart({ title, id, parentId }) ? "figma/btn-cheked.svg" : "figma/btn-plus.svg"} alt="plus icon"
+            />}
           </div>
         </>
       }

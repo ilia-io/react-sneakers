@@ -113,37 +113,6 @@ header {
   }
 }
 
-.overlay {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.drawer {
-  display: flex;
-  flex-flow: column;
-  position: absolute;
-  right: 0;
-  height: 100%;
-  width: 420px;
-  background: #ffffff;
-  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-
-  h2 {
-    margin: 0;
-  }
-  .items {
-    flex: 1;
-    overflow: auto;
-    margin-bottom: 40px;
-  }
-}
-
 .cartTotalBlock {
   ul {
     display: block;
@@ -164,6 +133,10 @@ header {
   }
   .greenButton {
     position: relative;
+
+    &:disabled {
+      animation: button-loading 0.8s ease-in-out infinite;
+    }
 
     &:hover {
       img {
@@ -197,6 +170,10 @@ header {
   }
   &:active {
     background: darken($color: #9dd558, $amount: 10%);
+  }
+  &:disabled {
+    background-color: #bebebe;
+    cursor: default;
   }
 }
 
@@ -236,5 +213,17 @@ h2 {
     &:hover {
       opacity: 1;
     }
+  }
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
   }
 }

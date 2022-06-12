@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../App';
 import Card from '../components/Card/Card';
 import MyLoader from '../Loader';
 
@@ -10,12 +11,13 @@ function Home({
   onChangeSearchInput,
   onFavourite,
   onAddToCart,
-  cartItems,
-  isLoading
+  isLoading,
+  cartItems
 }) {
+
   const renderProducts = () => {
     return (
-      (isLoading ? [...Array(12)]
+      (isLoading ? Array(12).fill({})
         : products
           .filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())))
         .map((item, index) => (
@@ -24,14 +26,13 @@ function Home({
             onPlus={(item) => onAddToCart(item)}
             key={index}
             //favourites={false}
-            addedToCart={cartItems.some(i => i.title === item.title)}
+            //addedToCart={isItemAddedToCart(item)}
             loading={isLoading}
             {...item}
           />
         ))
     )
   }
-
 
 
 
