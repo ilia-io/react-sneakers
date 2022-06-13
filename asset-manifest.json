@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ilia-io/react-sneakers/static/css/main.c64d5a62.css",
+    "main.js": "/ilia-io/react-sneakers/static/js/main.76d393d2.js",
+    "index.html": "/ilia-io/react-sneakers/index.html",
+    "main.c64d5a62.css.map": "/ilia-io/react-sneakers/static/css/main.c64d5a62.css.map",
+    "main.76d393d2.js.map": "/ilia-io/react-sneakers/static/js/main.76d393d2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c64d5a62.css",
+    "static/js/main.76d393d2.js"
+  ]
+}
