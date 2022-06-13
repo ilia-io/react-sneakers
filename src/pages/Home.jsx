@@ -41,7 +41,7 @@ function Home({
       <div className='d-flex align-center justify-between mb-40'>
         <h1>{searchValue ? `Поиск по названию: "${searchValue}"` : 'Все кроссовки'}</h1>
         <div className='search-block d-flex'>
-          <img src="/figma/search.svg" alt="search" />
+          <img src="figma/search.svg" alt="search" />
           {searchValue && <img
             className='clear removeBtn cu-p'
             src="figma/btn-remove.svg"

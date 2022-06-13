@@ -151,7 +151,7 @@ function App() {
         <Routes>
 
           <Route
-            path="/"
+            path=""
             element={
               <Home
                 cartItems={cartItems}
@@ -167,7 +167,7 @@ function App() {
           </Route>
 
           <Route
-            path="/favourites"
+            path="favourites"
             element={
               <Favourites
                 onFavourite={onFavourite}
@@ -176,12 +176,13 @@ function App() {
           </Route>
 
           <Route
-            path="/orders"
+            path="orders"
             element={
               <Orders
 
               />}>
           </Route>
+      
 
         </Routes>
 
